@@ -2,10 +2,12 @@
   "name": "currency-calculator",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pmbednarczyk.github.io/currency-calculator",
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "config": "^2.0.1",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
@@ -17,6 +19,8 @@
     "redux-axios-middleware": "^4.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
