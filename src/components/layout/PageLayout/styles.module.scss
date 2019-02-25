@@ -1,0 +1,16 @@
+@import "../../../theme/modules/variables";
+
+.pageContainer {
+  margin: 0 auto;
+  min-height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 100rem;
+  padding: 0 1rem;
+  @include lg {
+    max-width: 80%;
+    padding: 0;
+  }
+}

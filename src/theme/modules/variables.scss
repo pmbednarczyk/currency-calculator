@@ -1,0 +1,67 @@
+// Colors
+$primary-color: #a87ec7;
+$secondary-color: #afd081;
+$default-font-color: #92a1b1;
+$default-background-color: #282c34;
+$light-background-color: #31353e;
+
+$anchors-color: $primary-color;
+$dark-background-color: $default-font-color;
+$paragraphs-color: $default-font-color;
+$headings-color: $default-font-color;
+$border-color: darken($light-background-color, 7.5%);
+
+// Effects and transitions
+$default-transition: 0.25s;
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0 50%
+  }
+}
+
+// Forms
+$inputs-box-shadow: 0 0 0.15rem rgba(0, 0, 0, 0.3);
+
+// Fonts
+$default-font: 'IBM Plex Sans', 'Lato', 'Open Sans', Arial, sans-serif;
+
+// Breakpoints
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+$screen-xl: 1600px;
+
+// Media queries
+@mixin xs {
+  @media (min-width: $screen-xs) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: $screen-sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: $screen-md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: $screen-lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: $screen-xl) {
+    @content;
+  }
+}

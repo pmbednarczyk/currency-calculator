@@ -1,0 +1,25 @@
+@import "../../theme/modules/variables";
+
+.converterContainer {
+  background: linear-gradient(to top, rgba(darken($default-background-color, 25%), .45), darken($primary-color, 55%));
+  min-height: 40rem;
+  max-width: 100%;
+  width: 40rem;
+  border-radius: 1rem;
+  position: relative;
+  box-shadow: 5px 15px 50px rgba(darken($default-background-color, 25%), .4),
+  inset 0 0 10px darken($default-background-color, 25%);
+}
+
+.screenContainer {
+  position: absolute;
+  border: 1px solid $primary-color;
+  border-radius: 0.2rem;
+  top: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  background: rgba(#fff, 0.9);
+  box-shadow: 0 0 3rem darken($primary-color, 25%), inset 0 0 10px lighten($primary-color, 25%);
+  padding: 1rem;
+}

@@ -1,0 +1,91 @@
+html {
+  font-size: 12px;
+  @include sm {
+    font-size: 14px;
+  }
+  @include md {
+    font-size: 15px;
+  }
+  @include lg {
+    font-size: 16px;
+  }
+  @include xl {
+    font-size: 17px;
+  }
+}
+
+body {
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+  min-height: 100vh;
+  position: relative;
+  font-family: $default-font;
+  color: $default-font-color;
+  background: $default-background-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-shadow: inset 0 0.6rem 8rem #000000;
+  * {
+    box-sizing: border-box;
+  }
+  &.animatedBg {
+    animation: gradientAnimation 15s ease infinite;
+    background: linear-gradient(-45deg,
+      $primary-color,
+      $default-background-color,
+      darken($default-background-color, 5%)
+    );
+    background-size: 400% 400%;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  color: $headings-color;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1.8rem 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 1.2rem 0;
+}
+
+h3 {
+  font-size: 1.7rem;
+  margin: 1rem 0;
+}
+
+h4 {
+  font-size: 1.4rem;
+  margin: 0.8rem 0;
+}
+
+h5 {
+  font-size: 1.2rem;
+  margin:0.7rem 0;
+}
+
+a {
+  color: $anchors-color;
+  text-decoration: none;
+}
+
+form {
+  width: 100%;
+  max-width: 30rem;
+  fieldset {
+    border: 0;
+    input, textarea {
+      width: 100%;
+      padding: 0 0.4rem;
+      box-sizing: border-box;
+      line-height: 1.5rem;
+      border: 0;
+      box-shadow: $inputs-box-shadow;
+    }
+  }
+}
