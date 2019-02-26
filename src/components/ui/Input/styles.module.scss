@@ -1,0 +1,10 @@
+@import "../../../theme/modules/variables";
+
+.input {
+  width: 100%;
+  padding: 0 0.4rem;
+  box-sizing: border-box;
+  line-height: 1.5rem;
+  border: 0;
+  box-shadow: $inputs-box-shadow;
+}

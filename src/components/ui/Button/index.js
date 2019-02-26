@@ -11,7 +11,7 @@ const Button = (
     primary,
     onClick,
     raiseOnInteraction,
-  }
+  },
 ) => {
   const btnClassnames = classNames({
     [styles.btn]: true,
@@ -30,7 +30,7 @@ const Button = (
       {children}
     </button>
   );
-}
+};
 
 Button.propTypes = {
   children: PropTypes.oneOfType([
