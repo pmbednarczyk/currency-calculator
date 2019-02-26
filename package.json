@@ -19,7 +19,7 @@
     "redux-axios-middleware": "^4.0.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -27,7 +27,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "airbnb",
+    "rules": {
+      "linebreak-style": [0, "error", "windows"]
+    }
   },
   "browserslist": [
     ">0.2%",
@@ -36,6 +39,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
     "node-sass": "^4.11.0"
   }
 }
