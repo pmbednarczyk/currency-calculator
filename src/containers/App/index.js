@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import '../../theme/index.scss';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import routes from '../../routes';
