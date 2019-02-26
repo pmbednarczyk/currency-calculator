@@ -7,19 +7,19 @@ const CONVERTER_URL = '/converter';
 
 class Home extends Component {
   componentDidMount() {
-    document.body.classList.add("animatedBg")
+    document.body.classList.add('animatedBg');
   }
 
   componentWillUnmount() {
-    document.body.classList.remove("animatedBg")
+    document.body.classList.remove('animatedBg');
   }
 
-  render () {
+  render() {
     const content = (
       <React.Fragment>
-        <h1>Ladies and gentleman...</h1>
+        <h1>Ladies and gentlemans...</h1>
         <p>
-          I would like to present you currencies converter!
+          I would like to present you the currencies converter!
         </p>
         <Button
           raiseOnInteraction
@@ -29,16 +29,16 @@ class Home extends Component {
           SEE THE DEVICE
         </Button>
       </React.Fragment>
-    )
+    );
 
     return (
       <PageLayout content={content} />
-    )
+    );
   }
 }
 
 Home.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 };
 
 export default Home;

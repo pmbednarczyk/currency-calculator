@@ -23,8 +23,3 @@ export const createClientStore = (preloadedState = {}) => {
     composeEnhancers(applyMiddleware(axiosMiddleware(client))),
   );
 };
-
-
-
-
-
