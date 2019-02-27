@@ -1,41 +1,37 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PageLayout from '../../components/layout/PageLayout';
 import Button from '../../components/ui/Button';
 
 const CONVERTER_URL = '/converter';
 
-class Home extends Component {
-  componentDidMount() {
+const Home = (props) => {
+  useEffect(() => {
     document.body.classList.add('animatedBg');
-  }
 
-  componentWillUnmount() {
-    document.body.classList.remove('animatedBg');
-  }
+    return () => {
+      document.body.classList.remove('animatedBg');
+    };
+  });
 
-  render() {
-    const content = (
-      <React.Fragment>
-        <h1>Ladies and gentlemans...</h1>
-        <p>
-          I would like to present you the currencies converter!
-        </p>
-        <Button
-          raiseOnInteraction
-          primary
-          onClick={() => this.props.history.push(CONVERTER_URL)}
-        >
-          SEE THE DEVICE
-        </Button>
-      </React.Fragment>
-    );
+  const content = (
+    <React.Fragment>
+      <h1>Ladies and gentlemans...</h1>
+      <p>I would like to present you the currencies converter!</p>
+      <Button
+        raiseOnInteraction
+        primary
+        onClick={() => props.history.push(CONVERTER_URL)}
+      >
+        SEE THE DEVICE
+      </Button>
+    </React.Fragment>
+  );
 
-    return (
-      <PageLayout content={content} />
-    );
-  }
-}
+  return (
+    <PageLayout content={content} />
+  );
+};
 
 Home.propTypes = {
   history: PropTypes.object.isRequired,
