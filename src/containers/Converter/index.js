@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PageLayout from '../../components/layout/PageLayout';
-import Input from '../../components/ui/Input';
+
 import { loadCurrencies } from '../../redux/modules/currencies';
+import { setCurrencyValue } from '../../redux/modules/selectedCurrencies';
+import PageLayout from '../../components/layout/PageLayout';
+import CurrencySelector from './components/CurrencySelector';
+
 import styles from './styles.module.scss';
 
 class Converter extends Component {
@@ -14,15 +17,23 @@ class Converter extends Component {
     const content = (
       <div className={styles.converterContainer}>
         <div className={styles.screenContainer}>
-          {/* First currency data select component */}
-          <div>
-            {/* Search Text input  */}
-          <Input type="text" onChange={() => {}} />
-            {/* Currencies select menu */}
-          </div>
+          <CurrencySelector
+            currencies={this.props.currencies.data}
+            setCurrencyValue={this.props.setCurrencyValue}
+            currencyType="currencyToSell"
+          />
+          <CurrencySelector
+            currencies={this.props.currencies.data}
+            setCurrencyValue={this.props.setCurrencyValue}
+            currencyType="currencyToBuy"
+          />
         </div>
       </div>
     );
+
+    if (this.props.currencies.isProcessing || !this.props.currencies.isProcessed) {
+      return null;
+    }
 
     return (
       <PageLayout content={content} />
@@ -30,6 +41,7 @@ class Converter extends Component {
   }
 }
 
-export default connect(({ currencies }) => ({ currencies }), {
+export default connect(({ currencies, selectedCurrencies }) => ({ currencies, selectedCurrencies }), {
   loadCurrencies,
+  setCurrencyValue,
 })(Converter);

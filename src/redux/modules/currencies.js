@@ -12,11 +12,19 @@ const initialState = {
 const currencies = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_CURRENCIES:
-      return { ...state, loading: true };
-    case LOAD_CURRENCIES_SUCCESS:
-      return { ...state, loading: false, data: action.payload.data };
+      return { ...state, isProcessing: true };
+    case LOAD_CURRENCIES_SUCCESS: {
+      const currenciesData = Object.keys(action.payload.data)
+        .map(key => ({ value: key, label: `${key} - ${action.payload.data[key]}` }));
+
+      return {
+        ...state, isProcessing: false, isProcessed: true, data: currenciesData,
+      };
+    }
     case LOAD_CURRENCIES_FAIL:
-      return { ...state, loading: false, error: true };
+      return {
+        ...state, isProcessing: false, isProcessed: false, error: true,
+      };
     default:
       return state;
   }
@@ -26,8 +34,8 @@ export function loadCurrencies() {
   return {
     types: [LOAD_CURRENCIES, LOAD_CURRENCIES_SUCCESS, LOAD_CURRENCIES_FAIL],
     payload: {
-      request:{
-        url:'/currencies.json',
+      request: {
+        url: '/currencies.json',
       },
     },
   };

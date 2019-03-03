@@ -1,0 +1,22 @@
+@import "../../../theme/modules/variables";
+
+.comboBoxContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @include sm {
+    flex-wrap: nowrap;
+  }
+  .selectWrapper {
+    width: 100%;
+    @include sm {
+      width: 60%;
+    }
+  }
+  .inputWrapper {
+    width: 100%;
+    @include sm {
+      width: 39%;
+    }
+  }
+}
