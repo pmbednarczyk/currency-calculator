@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { loadCurrencies } from '../../redux/modules/currencies';
-import { setCurrencyValue } from '../../redux/modules/selectedCurrencies';
+import { setCurrencyValue, convertCurrencies } from '../../redux/modules/selectedCurrencies';
 import PageLayout from '../../components/layout/PageLayout';
+
 import CurrencySelector from './components/CurrencySelector';
+import RatesCompare from './components/RatesCompare';
 
 import styles from './styles.module.scss';
 
@@ -21,11 +23,17 @@ class Converter extends Component {
             currencies={this.props.currencies.data}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToSell"
+            initialCurrency="USD"
+          />
+          <RatesCompare
+            selectedCurrencies={this.props.selectedCurrencies}
+            convertCurrencies={this.props.convertCurrencies}
           />
           <CurrencySelector
             currencies={this.props.currencies.data}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToBuy"
+            initialCurrency="PLN"
           />
         </div>
       </div>
@@ -41,7 +49,21 @@ class Converter extends Component {
   }
 }
 
-export default connect(({ currencies, selectedCurrencies }) => ({ currencies, selectedCurrencies }), {
+const mapStateToProps = ({
+  currencies,
+  selectedCurrencies,
+}) => ({
+  currencies,
+  selectedCurrencies,
+});
+
+const mapDispatchToProps = {
   loadCurrencies,
   setCurrencyValue,
-})(Converter);
+  convertCurrencies,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Converter);

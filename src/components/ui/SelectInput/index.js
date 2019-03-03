@@ -10,6 +10,7 @@ const SelectInput = (
     onChange,
     options,
     placeholder,
+    value,
   },
 ) => {
   const selectInputClassnames = classNames({
@@ -20,8 +21,9 @@ const SelectInput = (
     <div className={selectInputClassnames}>
       <Select
         options={options}
-        onChange={value => onChange(value)}
+        onChange={newValue => onChange(newValue)}
         placeholder={placeholder}
+        value={value}
       />
     </div>
   );

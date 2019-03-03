@@ -11,20 +11,22 @@ class CurrencySelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: '',
-      currencies: props.currencies,
-      filteredCurrencies: [],
+      selectedCurrency: props.initialCurrency,
       currencyData: {
         propertyName: props.propertyName,
-        value: '',
+        label: props.initialCurrency,
         amount: '',
       },
     };
   }
 
+  componentDidMount() {
+    this.props.setCurrencyValue(this.props.currencyType, this.state.currencyData);
+  }
+
   onCurrencySelect = selectedCurrency => {
     // TODO: Load currency exchange ratio if both currencies are chosen
-    const updatedCurrencyData = { ...this.state.currencyData, value: selectedCurrency.value }
+    const updatedCurrencyData = { ...this.state.currencyData, label: selectedCurrency.label }
 
     this.updateCurrencyData(updatedCurrencyData);
   }
@@ -38,12 +40,16 @@ class CurrencySelector extends Component {
 
   updateCurrencyData = updatedCurrencyData => {
     this.setState({
-      currencyData: updatedCurrencyData
+      currencyData: updatedCurrencyData,
+      selectedCurrency: updatedCurrencyData.label,
     });
 
     this.props.setCurrencyValue(this.props.currencyType, updatedCurrencyData);
   }
 
+  getSelectedCurrencyValue = () => (
+    this.props.currencies.find(currency => currency.label === this.state.selectedCurrency)
+  )
 
   render() {
     const currencySelectorClassnames = classNames({
@@ -57,11 +63,13 @@ class CurrencySelector extends Component {
             options: this.props.currencies,
             onChange: this.onCurrencySelect,
             placeholder: 'Select currency...',
+            value: this.getSelectedCurrencyValue()
           }}
           input={{
             onChange: this.onAmountChange,
+            type: "number",
             value: this.state.currencyData.amount,
-            isDisabled: this.state.currencyData.value.length === 0,
+            isDisabled: this.state.selectedCurrency.length === 0,
             placeholder: 'Currency amount...',
           }}
         />
@@ -72,6 +80,7 @@ class CurrencySelector extends Component {
 
 CurrencySelector.propTypes = {
   setCurrencyValue: PropTypes.func.isRequired,
+  initialCurrency: PropTypes.string,
 };
 
 export default CurrencySelector;

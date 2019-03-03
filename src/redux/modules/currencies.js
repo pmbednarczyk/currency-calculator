@@ -6,7 +6,6 @@ const initialState = {
   data: [],
   isProcessing: false,
   isProcessed: false,
-  error: null,
 };
 
 const currencies = (state = initialState, action) => {
@@ -14,8 +13,8 @@ const currencies = (state = initialState, action) => {
     case LOAD_CURRENCIES:
       return { ...state, isProcessing: true };
     case LOAD_CURRENCIES_SUCCESS: {
-      const currenciesData = Object.keys(action.payload.data)
-        .map(key => ({ value: key, label: `${key} - ${action.payload.data[key]}` }));
+      const currenciesData = Object.keys(action.payload.data.rates)
+        .map(key => ({ value: action.payload.data.rates[key], label: key }));
 
       return {
         ...state, isProcessing: false, isProcessed: true, data: currenciesData,
@@ -23,7 +22,7 @@ const currencies = (state = initialState, action) => {
     }
     case LOAD_CURRENCIES_FAIL:
       return {
-        ...state, isProcessing: false, isProcessed: false, error: true,
+        ...state, isProcessing: false, isProcessed: false,
       };
     default:
       return state;
@@ -35,7 +34,7 @@ export function loadCurrencies() {
     types: [LOAD_CURRENCIES, LOAD_CURRENCIES_SUCCESS, LOAD_CURRENCIES_FAIL],
     payload: {
       request: {
-        url: '/currencies.json',
+        url: '/latest',
       },
     },
   };

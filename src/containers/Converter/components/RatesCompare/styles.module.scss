@@ -1,0 +1,12 @@
+.ratesCompareContainer {
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > span {
+    b {
+      margin-left: 0.3rem;
+    }
+  }
+}
+
