@@ -6,7 +6,6 @@ import isEmpty from 'lodash/isEmpty'
 import styles from './styles.module.scss';
 
 const DEFAULT_REFRESH_TIME = 10000;
-const BASE_CURRENCY_VALUE = 1;
 
 class RatesCompare extends Component {
   componentDidUpdate(prevProps) {
@@ -18,17 +17,15 @@ class RatesCompare extends Component {
     const isDifferentCurrency =
       (currencyToSell.label !== prevCurrencyToSell.label)
       || (currencyToBuy.label !== prevCurrencyToBuy.label);
-    const isInitialLoad = (!prevCurrencyToSell.value && !prevCurrencyToBuy.label)
-      || isDifferentCurrency;
 
-    if (isDifferentCurrency) this.getCurrencyRates(isInitialLoad)
+    if (isDifferentCurrency) this.getCurrencyRates()
   }
 
-  getCurrencyRates = isInitialLoad  => {
+  getCurrencyRates = () => {
     const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
-    if (isInitialLoad) {
-      this.props.convertCurrencies(currencyToSell.label, currencyToBuy.label)
-    }
+
+    this.props.convertCurrencies(currencyToSell.label, currencyToBuy.label)
+
     if (this.interval) clearInterval(this.interval);
     this.interval = setInterval(() => {
       this.props.convertCurrencies(currencyToSell.label, currencyToBuy.label)
@@ -37,12 +34,11 @@ class RatesCompare extends Component {
 
   renderCurrenciesRatio = data => {
     if (isEmpty(data)) return null;
-    const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
-    const currencyToBuyValue = Object.keys(data).find(key => key === currencyToBuy.label);
+    const { currencyToSell, currencyToBuy } = data;
 
     return (
       <span>
-        {`${BASE_CURRENCY_VALUE} ${currencyToSell.label} = ${data[currencyToBuy.label]} ${currencyToBuyValue}`}
+        {`${currencyToSell.rate} ${currencyToSell.label} = ${ currencyToBuy.rate} ${ currencyToBuy.label}`}
       </span>
     )
   }
@@ -54,7 +50,7 @@ class RatesCompare extends Component {
 
     return (
       <div className={ratesCompareClassnames}>
-        {this.renderCurrenciesRatio(this.props.selectedCurrencies.exchangeRate.rates)}
+        {this.renderCurrenciesRatio(this.props.selectedCurrencies.exchangeRate)}
       </div>
     );
   }
@@ -63,14 +59,14 @@ class RatesCompare extends Component {
 RatesCompare.propTypes = {
   selectedCurrencies: PropTypes.shape({
     currencyToSell: PropTypes.shape({
-      value: PropTypes.string,
+      label: PropTypes.string,
       amount: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
       ]),
     }),
     currencyToBuy: PropTypes.shape({
-      value: PropTypes.string,
+      label: PropTypes.string,
       amount: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,

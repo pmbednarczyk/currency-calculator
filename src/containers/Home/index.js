@@ -16,7 +16,7 @@ const Home = (props) => {
 
   const content = (
     <React.Fragment>
-      <h1>Ladies and gentlemans...</h1>
+      <h1>Ladies and gentlemen...</h1>
       <p>I would like to present you the currencies converter!</p>
       <Button
         raiseOnInteraction

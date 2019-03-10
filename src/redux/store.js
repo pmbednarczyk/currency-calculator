@@ -1,5 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import axios from 'axios';
+import thunk from 'redux-thunk';
 import axiosMiddleware from 'redux-axios-middleware';
 import rootReducer from './modules';
 
@@ -17,6 +18,6 @@ export const createClientStore = (preloadedState = {}) => {
   return createStore(
     rootReducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(axiosMiddleware(client))),
+    composeEnhancers(applyMiddleware(axiosMiddleware(client), thunk)),
   );
 };

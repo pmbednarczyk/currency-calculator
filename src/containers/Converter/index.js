@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadCurrencies } from '../../redux/modules/currencies';
 import { setCurrencyValue, convertCurrencies } from '../../redux/modules/selectedCurrencies';
 import PageLayout from '../../components/layout/PageLayout';
+import availablePockets from './pocketsMockup';
 
 import CurrencySelector from './components/CurrencySelector';
 import RatesCompare from './components/RatesCompare';
@@ -20,10 +21,12 @@ class Converter extends Component {
       <div className={styles.converterContainer}>
         <div className={styles.screenContainer}>
           <CurrencySelector
-            currencies={this.props.currencies.data}
+            currencies={availablePockets}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToSell"
             initialCurrency="USD"
+            // availablePockets={availablePockets}
+            selectedCurrencies={this.props.selectedCurrencies}
           />
           <RatesCompare
             selectedCurrencies={this.props.selectedCurrencies}
@@ -34,6 +37,7 @@ class Converter extends Component {
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToBuy"
             initialCurrency="PLN"
+            selectedCurrencies={this.props.selectedCurrencies}
           />
         </div>
       </div>

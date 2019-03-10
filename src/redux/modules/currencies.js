@@ -15,7 +15,6 @@ const currencies = (state = initialState, action) => {
     case LOAD_CURRENCIES_SUCCESS: {
       const currenciesData = Object.keys(action.payload.data.rates)
         .map(key => ({ value: action.payload.data.rates[key], label: key }));
-
       return {
         ...state, isProcessing: false, isProcessed: true, data: currenciesData,
       };

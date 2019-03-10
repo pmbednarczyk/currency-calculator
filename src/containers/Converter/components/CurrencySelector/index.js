@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import formatCurrencyValue from '../../../../helpers/formatCurrencyValue';
 
+import formatCurrencyValue from '../../../../helpers/formatCurrencyValue';
 import ComboBox from '../../../../components/ui/ComboBox';
 
 import styles from './styles.module.scss';
@@ -10,10 +10,10 @@ import styles from './styles.module.scss';
 class CurrencySelector extends Component {
   constructor(props) {
     super(props);
+    this.currencies = this.getAvailableCurrencies();
     this.state = {
       selectedCurrency: props.initialCurrency,
       currencyData: {
-        propertyName: props.propertyName,
         label: props.initialCurrency,
         amount: '',
       },
@@ -24,9 +24,24 @@ class CurrencySelector extends Component {
     this.props.setCurrencyValue(this.props.currencyType, this.state.currencyData);
   }
 
+  componentDidUpdate(prevProps) {
+    const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
+    const {
+      currencyToSell: prevCurrencyToSell,
+      currencyToBuy: prevCurrencyToBuy
+    } = prevProps.selectedCurrencies;
+    if (currencyToSell.label !== prevCurrencyToSell.label
+      || currencyToBuy.label !== prevCurrencyToBuy.label) {
+      this.currencies = this.getAvailableCurrencies();
+    }
+  }
+
   onCurrencySelect = selectedCurrency => {
-    // TODO: Load currency exchange ratio if both currencies are chosen
-    const updatedCurrencyData = { ...this.state.currencyData, label: selectedCurrency.label }
+    const { selectedCurrencies, currencyType } = this.props;
+    const updatedCurrencyData = {
+      amount: selectedCurrencies[currencyType].amount,
+      label: selectedCurrency.label
+    }
 
     this.updateCurrencyData(updatedCurrencyData);
   }
@@ -51,6 +66,12 @@ class CurrencySelector extends Component {
     this.props.currencies.find(currency => currency.label === this.state.selectedCurrency)
   )
 
+  getAvailableCurrencies = () => {
+    const currencyTypeToFilter = this.props.currencyType === 'currencyToSell' ? 'currencyToBuy' : 'currencyToSell';
+
+    return this.currencies = this.props.currencies.filter(currency => currency.label !== this.props.selectedCurrencies[currencyTypeToFilter].label);
+  }
+
   render() {
     const currencySelectorClassnames = classNames({
       [styles.currencySelectorContainer]: true,
@@ -60,7 +81,7 @@ class CurrencySelector extends Component {
       <div className={currencySelectorClassnames}>
         <ComboBox
           selectInput={{
-            options: this.props.currencies,
+            options: this.currencies,
             onChange: this.onCurrencySelect,
             placeholder: 'Select currency...',
             value: this.getSelectedCurrencyValue()
@@ -68,7 +89,7 @@ class CurrencySelector extends Component {
           input={{
             onChange: this.onAmountChange,
             type: "number",
-            value: this.state.currencyData.amount,
+            value: this.props.selectedCurrencies[this.props.currencyType].amount,
             isDisabled: this.state.selectedCurrency.length === 0,
             placeholder: 'Currency amount...',
           }}
