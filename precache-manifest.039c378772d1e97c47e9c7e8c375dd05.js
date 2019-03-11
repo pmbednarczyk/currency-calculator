@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "6942f419872c36dd779f",
+    "revision": "490765f9489fb961bdd5",
     "url": "/currency-calculator/static/css/main.1a2d8013.chunk.css"
   },
   {
-    "revision": "6942f419872c36dd779f",
-    "url": "/currency-calculator/static/js/main.6942f419.chunk.js"
+    "revision": "490765f9489fb961bdd5",
+    "url": "/currency-calculator/static/js/main.490765f9.chunk.js"
   },
   {
     "revision": "e63e215a52261b4f6d71",
@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.571ca45a.eot"
   },
   {
-    "revision": "45c04a02319da49199c32c2dce0caf68",
-    "url": "/currency-calculator/static/media/IBMPlexSans-Bold.45c04a02.eot"
-  },
-  {
     "revision": "d2eb3aafe0011986139b8e6f12d17524",
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.d2eb3aaf.ttf"
+  },
+  {
+    "revision": "45c04a02319da49199c32c2dce0caf68",
+    "url": "/currency-calculator/static/media/IBMPlexSans-Bold.45c04a02.eot"
   },
   {
     "revision": "4a61efddbcca80b7251425fbe481e0a8",
@@ -88,15 +88,15 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans.87b7cf31.svg"
   },
   {
-    "revision": "f7fe08374db1d679d3469e18d4a90a33",
-    "url": "/currency-calculator/static/media/IBMPlexSans-Light.f7fe0837.svg"
-  },
-  {
     "revision": "a3d20935595b7d6117940c9a89db5578",
     "url": "/currency-calculator/static/media/IBMPlexSans-ExtraLight.a3d20935.svg"
   },
   {
-    "revision": "146a6390e8b92ca2ea99e9eebaceb846",
+    "revision": "f7fe08374db1d679d3469e18d4a90a33",
+    "url": "/currency-calculator/static/media/IBMPlexSans-Light.f7fe0837.svg"
+  },
+  {
+    "revision": "8723e6a24bd182de6ac9761c4e87c33c",
     "url": "/currency-calculator/index.html"
   }
 ];
