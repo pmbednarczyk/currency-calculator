@@ -21,11 +21,11 @@ class Converter extends Component {
       <div className={styles.converterContainer}>
         <div className={styles.screenContainer}>
           <CurrencySelector
+            title="Your currency pockets"
             currencies={availablePockets}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToSell"
             initialCurrency="USD"
-            // availablePockets={availablePockets}
             selectedCurrencies={this.props.selectedCurrencies}
           />
           <RatesCompare
@@ -33,6 +33,7 @@ class Converter extends Component {
             convertCurrencies={this.props.convertCurrencies}
           />
           <CurrencySelector
+            title="Available currencies to buy"
             currencies={this.props.currencies.data}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToBuy"

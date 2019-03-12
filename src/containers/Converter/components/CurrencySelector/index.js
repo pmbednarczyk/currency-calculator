@@ -79,6 +79,7 @@ class CurrencySelector extends Component {
 
     return (
       <div className={currencySelectorClassnames}>
+        {this.props.title && <p>{this.props.title}:</p>}
         <ComboBox
           selectInput={{
             options: this.currencies,
