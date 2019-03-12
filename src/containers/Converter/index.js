@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import { loadCurrencies } from '../../redux/modules/currencies';
@@ -49,7 +50,10 @@ class Converter extends Component {
     }
 
     return (
-      <PageLayout content={content} />
+      <>
+        <Helmet title="Convert it!" />
+        <PageLayout content={content} />
+      </>
     );
   }
 }
