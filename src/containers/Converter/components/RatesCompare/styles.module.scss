@@ -1,12 +1,14 @@
+@import "../../../../theme/modules/variables";
+
 .ratesCompareContainer {
-  min-height: 2rem;
+  min-height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  > span {
-    b {
-      margin-left: 0.3rem;
-    }
-  }
+  background: rgba(#fff, 0.9);
+  color: rgba(darken($primary-color, 45%), 0.7);
+  border: 1px dashed rgba(darken($primary-color, 45%), 0.4);
+  margin: 2rem 0;
+  border-radius: 4px;
 }
 

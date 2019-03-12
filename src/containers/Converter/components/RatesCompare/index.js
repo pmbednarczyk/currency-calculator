@@ -14,21 +14,32 @@ class RatesCompare extends Component {
       currencyToSell: prevCurrencyToSell,
       currencyToBuy: prevCurrencyToBuy
     } = prevProps.selectedCurrencies;
-    const isDifferentCurrency =
-      (currencyToSell.label !== prevCurrencyToSell.label)
+    const isDifferentCurrency = (currencyToSell.label !== prevCurrencyToSell.label)
       || (currencyToBuy.label !== prevCurrencyToBuy.label);
 
-    if (isDifferentCurrency) this.getCurrencyRates()
+    const isInitialConvert = !prevCurrencyToSell.label
+      && !prevCurrencyToBuy.label
+      && currencyToSell.label
+      && currencyToBuy.label;
+
+    if (isDifferentCurrency) this.getCurrencyRates(isInitialConvert)
   }
 
-  getCurrencyRates = () => {
-    const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
+  getCurrencyRates = isInitialConvert  => {
+    const {
+      convertCurrencies,
+      selectedCurrencies: {
+        currencyToSell,
+        currencyToBuy,
+    }} = this.props;
 
-    this.props.convertCurrencies(currencyToSell.label, currencyToBuy.label)
-
+    if (isInitialConvert) {
+      convertCurrencies(currencyToSell.label, currencyToBuy.label)
+    }
     if (this.interval) clearInterval(this.interval);
+
     this.interval = setInterval(() => {
-      this.props.convertCurrencies(currencyToSell.label, currencyToBuy.label)
+      convertCurrencies(currencyToSell.label, currencyToBuy.label)
     }, DEFAULT_REFRESH_TIME);
   }
 
@@ -38,7 +49,7 @@ class RatesCompare extends Component {
 
     return (
       <span>
-        {`${currencyToSell.rate} ${currencyToSell.label} = ${ currencyToBuy.rate} ${ currencyToBuy.label}`}
+        {`${currencyToSell.rate} ${currencyToSell.label} = ${currencyToBuy.rate} ${currencyToBuy.label}`}
       </span>
     )
   }
