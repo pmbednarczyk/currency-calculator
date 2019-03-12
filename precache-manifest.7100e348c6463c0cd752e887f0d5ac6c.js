@@ -52,12 +52,12 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans.3656273b.eot"
   },
   {
-    "revision": "357195297e232ff030742f55578e6e83",
-    "url": "/currency-calculator/static/media/IBMPlexSans.35719529.ttf"
-  },
-  {
     "revision": "571ca45a4602ff7a29aafe99b7cc66f7",
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.571ca45a.eot"
+  },
+  {
+    "revision": "357195297e232ff030742f55578e6e83",
+    "url": "/currency-calculator/static/media/IBMPlexSans.35719529.ttf"
   },
   {
     "revision": "d2eb3aafe0011986139b8e6f12d17524",
@@ -68,12 +68,12 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans-Bold.45c04a02.eot"
   },
   {
-    "revision": "8968275054834b92a1ed64d57f237fd7",
-    "url": "/currency-calculator/static/media/IBMPlexSans-ExtraLight.89682750.eot"
-  },
-  {
     "revision": "4a61efddbcca80b7251425fbe481e0a8",
     "url": "/currency-calculator/static/media/IBMPlexSans-Bold.4a61efdd.ttf"
+  },
+  {
+    "revision": "8968275054834b92a1ed64d57f237fd7",
+    "url": "/currency-calculator/static/media/IBMPlexSans-ExtraLight.89682750.eot"
   },
   {
     "revision": "7ae4d8ec84a17d8ad1784fa1f859a64e",
