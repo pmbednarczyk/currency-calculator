@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty'
 
+import { selectedCurrenciesShapes } from '../.././Converter.shapes';
+
 import styles from './styles.module.scss';
 
 const DEFAULT_REFRESH_TIME = 10000;
@@ -69,19 +71,11 @@ class RatesCompare extends Component {
 
 RatesCompare.propTypes = {
   selectedCurrencies: PropTypes.shape({
-    currencyToSell: PropTypes.shape({
-      label: PropTypes.string,
-      amount: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-    }),
-    currencyToBuy: PropTypes.shape({
-      label: PropTypes.string,
-      amount: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
+    ...selectedCurrenciesShapes,
+    exchangeRate: PropTypes.shape({
+      isProcessing: false,
+      isProcessed: false,
+      ...selectedCurrenciesShapes
     }),
   }).isRequired,
 };

@@ -1,5 +1,6 @@
 export default (value) => {
-  if (!value) return '';
+  debugger;
+  if (!value || Number(value) <= 0) return '';
 
   return Math.round(value * 100) / 100;
 };

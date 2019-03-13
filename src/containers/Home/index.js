@@ -5,7 +5,7 @@ import Button from '../../components/ui/Button';
 
 const CONVERTER_URL = '/converter';
 
-const Home = (props) => {
+const Home = ({ history }) => {
   useEffect(() => {
     document.body.classList.add('animatedBg');
 
@@ -15,17 +15,17 @@ const Home = (props) => {
   });
 
   const content = (
-    <React.Fragment>
+    <>
       <h1>Ladies and gentlemen...</h1>
       <p>I would like to present you the currencies converter!</p>
       <Button
         raiseOnInteraction
         primary
-        onClick={() => props.history.push(CONVERTER_URL)}
+        onClick={() => history.push(CONVERTER_URL)}
       >
         SEE THE DEVICE
       </Button>
-    </React.Fragment>
+    </>
   );
 
   return (
@@ -34,7 +34,7 @@ const Home = (props) => {
 };
 
 Home.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default Home;

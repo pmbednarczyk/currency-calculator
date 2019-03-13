@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { selectedCurrenciesShapes } from '../.././Converter.shapes';
 import formatCurrencyValue from '../../../../helpers/formatCurrencyValue';
 import ComboBox from '../../../../components/ui/ComboBox';
 
@@ -67,9 +68,12 @@ class CurrencySelector extends Component {
   )
 
   getAvailableCurrencies = () => {
-    const currencyTypeToFilter = this.props.currencyType === 'currencyToSell' ? 'currencyToBuy' : 'currencyToSell';
+    const { currencies, selectedCurrencies } = this.props;
+    const currencyTypeToFilter = this.props.currencyType === 'currencyToSell'
+      ? 'currencyToBuy'
+      : 'currencyToSell';
 
-    return this.currencies = this.props.currencies.filter(currency => currency.label !== this.props.selectedCurrencies[currencyTypeToFilter].label);
+    return this.currencies = currencies.filter(currency => currency.label !== selectedCurrencies[currencyTypeToFilter].label);
   }
 
   render() {
@@ -101,8 +105,13 @@ class CurrencySelector extends Component {
 }
 
 CurrencySelector.propTypes = {
+  selectedCurrencies: PropTypes.shape({
+    ...selectedCurrenciesShapes,
+  }).isRequired,
+  currencies: PropTypes.array.isRequired,
   setCurrencyValue: PropTypes.func.isRequired,
   initialCurrency: PropTypes.string,
+  currencyType: PropTypes.string,
 };
 
 export default CurrencySelector;

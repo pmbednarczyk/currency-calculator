@@ -1,24 +1,21 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import routes from '../../routes';
 
-class App extends PureComponent {
-  render() {
-    return (
-      <React.Fragment>
-        <Helmet
-          defaultTitle="Currency Calculator"
-          title="Homepage"
-          titleTemplate="%s | Currency Calculator"
-        />
-        <Switch>
-          {routes.map(
-            (route, index) => <Route key={route.path || index} {...route} />)}
-        </Switch>
-      </React.Fragment>
-    );
-  }
-}
+const App = () => (
+  <>
+    <Helmet
+      defaultTitle="Currency Calculator"
+      title="Homepage"
+      titleTemplate="%s | Currency Calculator"
+    />
+    <Switch>
+      {
+        routes.map((route, index) => <Route key={route.path || index} {...route} />)
+      }
+    </Switch>
+  </>
+);
 
 export default withRouter(App);

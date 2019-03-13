@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { selectedCurrenciesShapes } from './Converter.shapes';
 
 import { loadCurrencies } from '../../redux/modules/currencies';
 import { setCurrencyValue, convertCurrencies } from '../../redux/modules/selectedCurrencies';
@@ -18,6 +20,10 @@ class Converter extends Component {
   }
 
   render() {
+    const {
+      selectedCurrencies,
+      currencies,
+    } = this.props;
     const content = (
       <div className={styles.converterContainer}>
         <div className={styles.screenContainer}>
@@ -27,25 +33,25 @@ class Converter extends Component {
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToSell"
             initialCurrency="USD"
-            selectedCurrencies={this.props.selectedCurrencies}
+            selectedCurrencies={selectedCurrencies}
           />
           <RatesCompare
-            selectedCurrencies={this.props.selectedCurrencies}
+            selectedCurrencies={selectedCurrencies}
             convertCurrencies={this.props.convertCurrencies}
           />
           <CurrencySelector
             title="Available currencies to buy"
-            currencies={this.props.currencies.data}
+            currencies={currencies.data}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToBuy"
             initialCurrency="PLN"
-            selectedCurrencies={this.props.selectedCurrencies}
+            selectedCurrencies={selectedCurrencies}
           />
         </div>
       </div>
     );
 
-    if (this.props.currencies.isProcessing || !this.props.currencies.isProcessed) {
+    if (currencies.isProcessing || !currencies.isProcessed) {
       return null;
     }
 
@@ -57,6 +63,20 @@ class Converter extends Component {
     );
   }
 }
+
+Converter.propTypes = {
+  setCurrencyValue: PropTypes.func.isRequired,
+  convertCurrencies: PropTypes.func.isRequired,
+  loadCurrencies: PropTypes.func.isRequired,
+  selectedCurrencies: PropTypes.shape({
+    ...selectedCurrenciesShapes,
+  }).isRequired,
+  currencies: PropTypes.shape({
+    data: PropTypes.array,
+    isProcessing: PropTypes.bool,
+    isProcessed: PropTypes.bool,
+  }).isRequired,
+};
 
 const mapStateToProps = ({
   currencies,

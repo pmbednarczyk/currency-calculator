@@ -1,4 +1,10 @@
-export default (rates, isCurrencyToSellType, amount, isCurrencyToBuyLabelChanged, currencyToSellStateAmount) => {
+export default (
+  rates,
+  isCurrencyToSellType,
+  amount,
+  isCurrencyToBuyLabelChanged,
+  currencyToSellStateAmount,
+) => {
   if (!amount) return '';
   const { rate } = rates.currencyToBuy;
   let convertedAmount;

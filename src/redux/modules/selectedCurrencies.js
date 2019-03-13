@@ -132,7 +132,7 @@ export function convertCurrencies(currencyToSell, currencyToBuy) {
 export const setCurrencyValue = (currencyType, data) => (dispatch, getState) => {
   const state = getState();
   const { label: newLabel } = data;
-  const isCurrencyToSell = currencyType === 'currencyToSell';
+  const isCurrencyToSell = currencyType === CURRENCY_TO_SELL;
   const { currencyToSell, currencyToBuy } = state.selectedCurrencies.exchangeRate;
   const currencyToCompare = isCurrencyToSell ? currencyToSell.label : currencyToBuy.label;
   const isDifferentLabel = (currencyToSell.label && currencyToBuy.label)

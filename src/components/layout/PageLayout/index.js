@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.module.scss';
 
-class PageLayout extends Component {
-  render() {
-    const { content } = this.props;
+const PageLayout = ({ content }) => (
+  <div className={styles.pageContainer}>
+    {content}
+  </div>
+);
 
-    return (
-      <div className={styles.pageContainer}>
-        {content}
-      </div>
-    );
-  }
-}
+PageLayout.propTypes = {
+  content: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
+};
 
 export default PageLayout;
