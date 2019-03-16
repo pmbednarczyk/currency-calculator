@@ -51,14 +51,14 @@ class Converter extends Component {
       </div>
     );
 
-    if (currencies.isProcessing || !currencies.isProcessed) {
+    if (!currencies.isProcessing && !currencies.isProcessed) {
       return null;
     }
 
     return (
       <>
         <Helmet title="Convert it!" />
-        <PageLayout content={content} />
+        <PageLayout content={content} isLoading={currencies.isProcessing} />
       </>
     );
   }
@@ -79,9 +79,9 @@ Converter.propTypes = {
 };
 
 const mapStateToProps = ({
-  currencies,
-  selectedCurrencies,
-}) => ({
+                           currencies,
+                           selectedCurrencies,
+                         }) => ({
   currencies,
   selectedCurrencies,
 });

@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import LoaderAnimation from '../../other/LoaderAnimation';
+
 import styles from './styles.module.scss';
 
-const PageLayout = ({ content }) => (
+const PageLayout = ({ content, isLoading }) => (
   <div className={styles.pageContainer}>
-    {content}
+    {isLoading ? <LoaderAnimation isLoading={isLoading} /> : content}
   </div>
 );
 
@@ -13,6 +16,11 @@ PageLayout.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
+  isLoading: PropTypes.bool,
+};
+
+PageLayout.defaultProps = {
+  isLoading: false,
 };
 
 export default PageLayout;

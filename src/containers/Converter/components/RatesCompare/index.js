@@ -52,7 +52,7 @@ class RatesCompare extends Component {
   renderCurrenciesRatio = data => {
     const { currencyToSell, currencyToBuy, isProcessing, isProcessed } = data;
     if (!isProcessing && !isProcessed) return null;
-    if (isProcessing) return <LoaderAnimation isLoading={isProcessing} />
+    if (isProcessing) return <LoaderAnimation isLoading />
 
     return (
       <span>
