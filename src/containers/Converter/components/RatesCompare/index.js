@@ -28,6 +28,10 @@ class RatesCompare extends Component {
     if (isDifferentCurrency) this.getCurrencyRates(isInitialConvert)
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   getCurrencyRates = isInitialConvert  => {
     const {
       convertCurrencies,
@@ -47,12 +51,9 @@ class RatesCompare extends Component {
   }
 
   renderCurrenciesRatio = data => {
-    if (isEmpty(data)) return null;
-    const { currencyToSell, currencyToBuy, isProcessing } = data;
-
-    if (isProcessing) {
-      return <LoaderAnimation isLoading={isProcessing} />
-    }
+    const { currencyToSell, currencyToBuy, isProcessing, isProcessed } = data;
+    if (!isProcessing && !isProcessed) return null;
+    if (isProcessing) return <LoaderAnimation isLoading={isProcessing} />
 
     return (
       <span>

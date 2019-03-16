@@ -77,8 +77,7 @@ class CurrencySelector extends Component {
   }
 
   render() {
-    const { isProcessing } = this.props.selectedCurrencies.exchangeRate;
-    const isDisabled = this.state.selectedCurrency.length === 0 || isProcessing;
+    const isDisabled = this.state.selectedCurrency.length === 0;
     const currencySelectorClassnames = classNames({
       [styles.currencySelectorContainer]: true,
     });
