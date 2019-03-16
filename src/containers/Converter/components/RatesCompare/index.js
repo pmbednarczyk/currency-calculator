@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import isEmpty from 'lodash/isEmpty'
 
 import LoaderAnimation from '../../../../components/other/LoaderAnimation'
-import { selectedCurrenciesShapes } from '../.././Converter.shapes';
+import { selectedCurrenciesShapes } from '../../shapes';
 
 import styles from './styles.module.scss';
 

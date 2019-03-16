@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { selectedCurrenciesShapes } from './Converter.shapes';
+import { selectedCurrenciesShapes } from './shapes';
 
 import { loadCurrencies } from '../../redux/modules/currencies';
 import { setCurrencyValue, convertCurrencies } from '../../redux/modules/selectedCurrencies';

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Select from 'react-select';
 
-import SelectInputPropTypes, { SelectInputDefaultProps } from './SelectInput.shapes';
+import SelectInputPropTypes, { SelectInputDefaultProps } from './shapes';
 import styles from './styles.module.scss';
 
 const SelectInput = (

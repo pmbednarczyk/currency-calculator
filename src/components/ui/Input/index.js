@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import InputPropTypes, { InputDefaultProps } from './Input.shapes';
+import InputPropTypes, { InputDefaultProps } from './shapes';
 
 import styles from './styles.module.scss';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { selectedCurrenciesShapes } from '../.././Converter.shapes';
+import { selectedCurrenciesShapes } from '../../shapes';
 import formatCurrencyValue from '../../../../helpers/formatCurrencyValue';
 import ComboBox from '../../../../components/ui/ComboBox';
 

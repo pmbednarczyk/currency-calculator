@@ -4,8 +4,8 @@ import classNames from 'classnames';
 
 import SelectInput from '../SelectInput';
 import Input from '../Input';
-import InputPropTypes, { InputDefaultProps } from '../Input/Input.shapes';
-import SelectInputPropTypes, { SelectInputDefaultProps } from '../SelectInput/SelectInput.shapes';
+import InputPropTypes, { InputDefaultProps } from '../Input/shapes';
+import SelectInputPropTypes, { SelectInputDefaultProps } from '../SelectInput/shapes';
 
 import styles from './styles.module.scss';
 
