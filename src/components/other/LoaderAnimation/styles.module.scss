@@ -1,0 +1,46 @@
+@import "../../../theme/modules/variables";
+
+.loader {
+  width: 5rem;
+  height: 100%;
+  line-height: 100%;
+  .loaderDots, .loaderDots:before, .loaderDots:after  {
+    background-color:rgba($primary-color, 0.8);
+    display: inline-block;
+    height: 0.7rem;
+    box-sizing: border-box;
+    margin-left: 0.5rem;
+    width: 0.7rem;
+    animation-name: bounce_loader;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    border-radius: 50%;
+  }
+  .loaderDots {
+    animation-delay: 0.1s;
+    position: relative;
+    &:before, &:after {
+      content: '';
+      position: absolute;
+    }
+    &:before {
+      animation-delay: 0.7s;
+      left: 10px;
+    }
+
+    &:after {
+      animation-delay: 0.8s;
+      left: 30px;
+    }
+  }
+
+  @keyframes bounce_loader{
+    10% {
+      background-color: rgba($secondary-color, 0.3);
+    }
+    50% {
+      background-color: rgba($secondary-color, 0.8);
+    }
+  }
+}

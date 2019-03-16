@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isEmpty from 'lodash/isEmpty'
 
+import LoaderAnimation from '../../../../components/other/LoaderAnimation'
 import { selectedCurrenciesShapes } from '../.././Converter.shapes';
 
 import styles from './styles.module.scss';
@@ -47,7 +48,11 @@ class RatesCompare extends Component {
 
   renderCurrenciesRatio = data => {
     if (isEmpty(data)) return null;
-    const { currencyToSell, currencyToBuy } = data;
+    const { currencyToSell, currencyToBuy, isProcessing } = data;
+
+    if (isProcessing) {
+      return <LoaderAnimation isLoading={isProcessing} />
+    }
 
     return (
       <span>
