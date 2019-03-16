@@ -11,6 +11,7 @@ const SelectInput = (
     options,
     placeholder,
     value,
+    isDisabled,
   },
 ) => {
   const selectInputClassnames = classNames({
@@ -24,6 +25,7 @@ const SelectInput = (
         onChange={newValue => onChange(newValue)}
         placeholder={placeholder}
         value={value}
+        isDisabled={isDisabled}
       />
     </div>
   );

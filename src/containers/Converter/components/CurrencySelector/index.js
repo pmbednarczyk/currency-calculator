@@ -77,6 +77,8 @@ class CurrencySelector extends Component {
   }
 
   render() {
+    const { isProcessing } = this.props.selectedCurrencies.exchangeRate;
+    const isDisabled = this.state.selectedCurrency.length === 0 || isProcessing;
     const currencySelectorClassnames = classNames({
       [styles.currencySelectorContainer]: true,
     });
@@ -89,13 +91,14 @@ class CurrencySelector extends Component {
             options: this.currencies,
             onChange: this.onCurrencySelect,
             placeholder: 'Select currency...',
-            value: this.getSelectedCurrencyValue()
+            value: this.getSelectedCurrencyValue(),
+            isDisabled,
           }}
           input={{
             onChange: this.onAmountChange,
             type: "number",
             value: this.props.selectedCurrencies[this.props.currencyType].amount,
-            isDisabled: this.state.selectedCurrency.length === 0,
+            isDisabled,
             placeholder: 'Currency amount...',
           }}
         />
