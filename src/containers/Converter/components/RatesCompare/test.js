@@ -16,6 +16,7 @@ const selectedCurrencies = {
 it('renders without crashing (currencies are converting)', () => {
   shallow(
     <RatesCompare
+      convertCurrencies={() => {}}
       selectedCurrencies={{
         ...selectedCurrencies,
         exchangeRate: {
@@ -31,6 +32,7 @@ it('renders without crashing (currencies are converting)', () => {
 it('renders without crashing (currencies converted)', () => {
   shallow(
     <RatesCompare
+      convertCurrencies={() => {}}
       selectedCurrencies={{
         ...selectedCurrencies,
         exchangeRate: {

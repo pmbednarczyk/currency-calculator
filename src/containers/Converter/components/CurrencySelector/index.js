@@ -26,10 +26,15 @@ class CurrencySelector extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
+    const {
+      selectedCurrencies: {
+        currencyToSell,
+        currencyToBuy,
+      },
+    } = this.props;
     const {
       currencyToSell: prevCurrencyToSell,
-      currencyToBuy: prevCurrencyToBuy
+      currencyToBuy: prevCurrencyToBuy,
     } = prevProps.selectedCurrencies;
     if (currencyToSell.label !== prevCurrencyToSell.label
       || currencyToBuy.label !== prevCurrencyToBuy.label) {
@@ -37,24 +42,24 @@ class CurrencySelector extends Component {
     }
   }
 
-  onCurrencySelect = selectedCurrency => {
+  onCurrencySelect = (selectedCurrency) => {
     const { selectedCurrencies, currencyType } = this.props;
     const updatedCurrencyData = {
       amount: selectedCurrencies[currencyType].amount,
-      label: selectedCurrency.label
-    }
+      label: selectedCurrency.label,
+    };
 
     this.updateCurrencyData(updatedCurrencyData);
   }
 
-  onAmountChange = currencyAmount => {
+  onAmountChange = (currencyAmount) => {
     const formattedAmount = formatCurrencyValue(currencyAmount);
-    const updatedCurrencyData = { ...this.state.currencyData, amount: formattedAmount }
+    const updatedCurrencyData = { ...this.state.currencyData, amount: formattedAmount };
 
     this.updateCurrencyData(updatedCurrencyData);
   }
 
-  updateCurrencyData = updatedCurrencyData => {
+  updateCurrencyData = (updatedCurrencyData) => {
     this.setState({
       currencyData: updatedCurrencyData,
       selectedCurrency: updatedCurrencyData.label,
@@ -68,23 +73,26 @@ class CurrencySelector extends Component {
   )
 
   getAvailableCurrencies = () => {
-    const { currencies, selectedCurrencies } = this.props;
-    const currencyTypeToFilter = this.props.currencyType === 'currencyToSell'
+    const { currencies, selectedCurrencies, currencyType } = this.props;
+    const currencyTypeToFilter = currencyType === 'currencyToSell'
       ? 'currencyToBuy'
       : 'currencyToSell';
 
-    return this.currencies = currencies.filter(currency => currency.label !== selectedCurrencies[currencyTypeToFilter].label);
+    return this.currencies = currencies.filter(currency => (
+      currency.label !== selectedCurrencies[currencyTypeToFilter].label
+    ));
   }
 
   render() {
     const isDisabled = this.state.selectedCurrency.length === 0;
+    const { title, currencyType, selectedCurrencies } = this.props;
     const currencySelectorClassnames = classNames({
       [styles.currencySelectorContainer]: true,
     });
 
     return (
       <div className={currencySelectorClassnames}>
-        {this.props.title && <p>{this.props.title}:</p>}
+        {title && <p>{title}:</p>}
         <ComboBox
           selectInput={{
             options: this.currencies,
@@ -95,8 +103,8 @@ class CurrencySelector extends Component {
           }}
           input={{
             onChange: this.onAmountChange,
-            type: "number",
-            value: this.props.selectedCurrencies[this.props.currencyType].amount,
+            type: 'number',
+            value: selectedCurrencies[currencyType].amount,
             isDisabled,
             placeholder: 'Currency amount...',
           }}
@@ -110,10 +118,15 @@ CurrencySelector.propTypes = {
   selectedCurrencies: PropTypes.shape({
     ...selectedCurrenciesShapes,
   }).isRequired,
-  currencies: PropTypes.array.isRequired,
+  currencies: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   setCurrencyValue: PropTypes.func.isRequired,
-  initialCurrency: PropTypes.string,
-  currencyType: PropTypes.string,
+  initialCurrency: PropTypes.string.isRequired,
+  currencyType: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
+
+CurrencySelector.defaultProps = {
+  title: '',
 };
 
 export default CurrencySelector;

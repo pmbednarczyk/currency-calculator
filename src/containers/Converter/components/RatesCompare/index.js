@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import LoaderAnimation from '../../../../components/other/LoaderAnimation'
+import LoaderAnimation from '../../../../components/other/LoaderAnimation';
 import { selectedCurrenciesShapes } from '../../shapes';
 
 import styles from './styles.module.scss';
@@ -11,10 +11,15 @@ const DEFAULT_REFRESH_TIME = 10000;
 
 class RatesCompare extends Component {
   componentDidUpdate(prevProps) {
-    const { currencyToSell, currencyToBuy } = this.props.selectedCurrencies;
+    const {
+      selectedCurrencies: {
+        currencyToSell,
+        currencyToBuy,
+      },
+    } = this.props;
     const {
       currencyToSell: prevCurrencyToSell,
-      currencyToBuy: prevCurrencyToBuy
+      currencyToBuy: prevCurrencyToBuy,
     } = prevProps.selectedCurrencies;
     const isDifferentCurrency = (currencyToSell.label !== prevCurrencyToSell.label)
       || (currencyToBuy.label !== prevCurrencyToBuy.label);
@@ -24,41 +29,47 @@ class RatesCompare extends Component {
       && currencyToSell.label
       && currencyToBuy.label;
 
-    if (isDifferentCurrency) this.getCurrencyRates(isInitialConvert)
+    if (isDifferentCurrency) this.getCurrencyRates(isInitialConvert);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  getCurrencyRates = isInitialConvert  => {
+  getCurrencyRates = (isInitialConvert) => {
     const {
       convertCurrencies,
       selectedCurrencies: {
         currencyToSell,
         currencyToBuy,
-    }} = this.props;
+      },
+    } = this.props;
 
     if (isInitialConvert) {
-      convertCurrencies(currencyToSell.label, currencyToBuy.label)
+      convertCurrencies(currencyToSell.label, currencyToBuy.label);
     }
     if (this.interval) clearInterval(this.interval);
 
     this.interval = setInterval(() => {
-      convertCurrencies(currencyToSell.label, currencyToBuy.label)
+      convertCurrencies(currencyToSell.label, currencyToBuy.label);
     }, DEFAULT_REFRESH_TIME);
   }
 
-  renderCurrenciesRatio = data => {
-    const { currencyToSell, currencyToBuy, isProcessing, isProcessed } = data;
+  renderCurrenciesRatio = (data) => {
+    const {
+      currencyToSell,
+      currencyToBuy,
+      isProcessing,
+      isProcessed,
+    } = data;
     if (!isProcessing && !isProcessed) return null;
-    if (isProcessing) return <LoaderAnimation isLoading />
+    if (isProcessing) return <LoaderAnimation isLoading />;
 
     return (
       <span>
         {`${currencyToSell.rate} ${currencyToSell.label} = ${currencyToBuy.rate} ${currencyToBuy.label}`}
       </span>
-    )
+    );
   }
 
   render() {
@@ -80,9 +91,10 @@ RatesCompare.propTypes = {
     exchangeRate: PropTypes.shape({
       isProcessing: false,
       isProcessed: false,
-      ...selectedCurrenciesShapes
+      ...selectedCurrenciesShapes,
     }),
   }).isRequired,
+  convertCurrencies: PropTypes.func.isRequired,
 };
 
 export default RatesCompare;

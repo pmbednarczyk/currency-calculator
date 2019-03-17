@@ -79,9 +79,9 @@ Converter.propTypes = {
 };
 
 const mapStateToProps = ({
-                           currencies,
-                           selectedCurrencies,
-                         }) => ({
+  currencies,
+  selectedCurrencies,
+}) => ({
   currencies,
   selectedCurrencies,
 });
