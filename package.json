@@ -6,11 +6,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
-    "config": "^2.0.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "gh-pages": "^2.0.1",
-    "loadash": "^1.0.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
@@ -33,6 +31,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parser": "babel-eslint",
     "extends": "airbnb",
     "rules": {
       "linebreak-style": [

@@ -2193,12 +2193,6 @@ concat-stream@^1.5.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-config@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/config/-/config-2.0.2.tgz#b81c8f4e05203e1da7752864c19a11604ca923d7"
-  dependencies:
-    json5 "^1.0.1"
-
 confusing-browser-globals@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.5.tgz#0171050cfdd4261e278978078bc00c4d88e135f4"
@@ -5421,10 +5415,6 @@ load-json-file@^2.0.0:
     parse-json "^2.2.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
-
-loadash@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/loadash/-/loadash-1.0.0.tgz#b92e54d809f3c225f4f9a9cfbaeae5b56de1ca9f"
 
 loader-fs-cache@^1.0.0:
   version "1.0.1"
