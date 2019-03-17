@@ -1,4 +1,8 @@
 # CURRENCY CONVERTER
-I have decided to use CRA* module to focus more on preparing functionality and design than setting up webpack.
+I have decided to use Create React App module to focus more on preparing functionality and design than setting up webpack.
 
-*CREATE REACT APP has some limitations (ex. couldn't add sass-resources-loader or path resolver)
+TODOs: 
+- IMPROVE TESTS;
+- ADD MORE FEATURES LIKE: swapping currencies, handling user currency pockets money limit;
+- ADD SOME FANCY ANIMATIONS AND TRANSITIONS;
+- CUSTOMIZE WEBPACK CONFIG (add path resolving, sass variables preload);
