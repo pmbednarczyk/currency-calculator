@@ -11,8 +11,8 @@ import styles from './styles.module.scss';
 class CurrencySelector extends Component {
   constructor(props) {
     super(props);
-    this.currencies = this.getAvailableCurrencies();
     this.state = {
+      currencies: this.getAvailableCurrencies(),
       selectedCurrency: props.initialCurrency,
       currencyData: {
         label: props.initialCurrency,
@@ -38,7 +38,7 @@ class CurrencySelector extends Component {
     } = prevProps.selectedCurrencies;
     if (currencyToSell.label !== prevCurrencyToSell.label
       || currencyToBuy.label !== prevCurrencyToBuy.label) {
-      this.currencies = this.getAvailableCurrencies();
+      this.setState({ currencies: this.getAvailableCurrencies() });
     }
   }
 
@@ -77,15 +77,19 @@ class CurrencySelector extends Component {
     const currencyTypeToFilter = currencyType === 'currencyToSell'
       ? 'currencyToBuy'
       : 'currencyToSell';
-
-    return this.currencies = currencies.filter(currency => (
+    return currencies.filter(currency => (
       currency.label !== selectedCurrencies[currencyTypeToFilter].label
     ));
   }
 
   render() {
     const isDisabled = this.state.selectedCurrency.length === 0;
-    const { title, currencyType, selectedCurrencies } = this.props;
+    const {
+      title,
+      currencyType,
+      selectedCurrencies,
+      showValues,
+    } = this.props;
     const currencySelectorClassnames = classNames({
       [styles.currencySelectorContainer]: true,
     });
@@ -94,11 +98,13 @@ class CurrencySelector extends Component {
       <div className={currencySelectorClassnames}>
         {title && <p>{title}:</p>}
         <ComboBox
+          key={this.currencies}
           selectInput={{
-            options: this.currencies,
+            options: this.state.currencies,
             onChange: this.onCurrencySelect,
             placeholder: 'Select currency...',
             value: this.getSelectedCurrencyValue(),
+            showValues,
             isDisabled,
           }}
           input={{
@@ -123,10 +129,12 @@ CurrencySelector.propTypes = {
   initialCurrency: PropTypes.string.isRequired,
   currencyType: PropTypes.string.isRequired,
   title: PropTypes.string,
+  showValues: PropTypes.bool,
 };
 
 CurrencySelector.defaultProps = {
   title: '',
+  showValues: false,
 };
 
 export default CurrencySelector;

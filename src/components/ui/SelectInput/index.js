@@ -12,11 +12,19 @@ const SelectInput = (
     placeholder,
     value,
     isDisabled,
+    showValues,
   },
 ) => {
   const selectInputClassnames = classNames({
     [styles.inputContainer]: true,
   });
+
+  const renderOption = option => (
+    <div className={styles.optionContainer} key={option.label}>
+      {option.label}
+      {showValues && <span>{option.value}</span>}
+    </div>
+  );
 
   return (
     <div className={selectInputClassnames}>
@@ -26,6 +34,7 @@ const SelectInput = (
         placeholder={placeholder}
         value={value}
         isDisabled={isDisabled}
+        formatOptionLabel={renderOption}
       />
     </div>
   );

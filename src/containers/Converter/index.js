@@ -34,6 +34,7 @@ class Converter extends Component {
             currencyType="currencyToSell"
             initialCurrency="USD"
             selectedCurrencies={selectedCurrencies}
+            showValues
           />
           <RatesCompare
             selectedCurrencies={selectedCurrencies}

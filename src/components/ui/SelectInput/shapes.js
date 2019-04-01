@@ -5,6 +5,7 @@ export default {
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   isDisabled: PropTypes.bool,
+  showValues: PropTypes.bool,
   value: PropTypes.shape({
     label: PropTypes.string,
     value: PropTypes.oneOfType([
@@ -19,6 +20,7 @@ export const SelectInputDefaultProps = {
   onChange: () => {},
   placeholder: '',
   isDisabled: true,
+  showValues: false,
   value: {
     label: '',
     value: '',

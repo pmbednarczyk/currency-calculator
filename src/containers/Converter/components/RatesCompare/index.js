@@ -23,7 +23,6 @@ class RatesCompare extends Component {
     } = prevProps.selectedCurrencies;
     const isDifferentCurrency = (currencyToSell.label !== prevCurrencyToSell.label)
       || (currencyToBuy.label !== prevCurrencyToBuy.label);
-
     const isInitialConvert = !prevCurrencyToSell.label
       && !prevCurrencyToBuy.label
       && currencyToSell.label
