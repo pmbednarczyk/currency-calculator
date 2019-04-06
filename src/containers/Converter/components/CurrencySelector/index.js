@@ -89,17 +89,6 @@ class CurrencySelector extends Component {
     this.props.currencies.find(currency => currency.label === this.state.selectedCurrency)
   )
 
-//   const {
-//   currencyType,
-//   currencies, selectedCurrencies: { currencyToSell, currencyToBuy },
-// } = this.props;
-// const selectedCurrency = currencies.find(curr => curr.label === this.state.selectedCurrency);
-// if (currencyType === 'currencyToBuy' && currencyToSell.label === currencyToBuy.label) {
-//   return currencies[1];
-// }
-//
-// return selectedCurrency || currencies[0];
-
   getAvailableCurrencies = () => {
     const { currencies, selectedCurrencies, currencyType } = this.props;
     const currencyTypeToFilter = currencyType === 'currencyToSell'
