@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import LoaderAnimation from '../../other/LoaderAnimation';
 
 import styles from './styles.module.scss';
 
-const PageLayout = ({ content, isLoading }) => (
-  <div className={styles.pageContainer}>
-    {isLoading ? <LoaderAnimation isLoading={isLoading} /> : content}
-  </div>
-);
+const PageLayout = ({ content, isLoading }) => {
+  const pageLayoutClassnames = classNames({
+    [styles.pageContainer]: true,
+    [styles.fadeInContent]: !isLoading,
+  });
+
+  return (
+    <div className={pageLayoutClassnames}>
+      {isLoading ? <LoaderAnimation isLoading={isLoading} /> : content }
+    </div>
+  )
+};
 
 PageLayout.propTypes = {
   content: PropTypes.oneOfType([

@@ -13,4 +13,13 @@
     max-width: 80%;
     padding: 0;
   }
+  &.fadeInContent {
+    animation-timing-function: ease-out;
+    animation: fadein 1s;
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

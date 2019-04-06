@@ -9,4 +9,4 @@ export default [{
   path: '/converter',
   component: Converter,
   exact: true,
-}]
+}];
