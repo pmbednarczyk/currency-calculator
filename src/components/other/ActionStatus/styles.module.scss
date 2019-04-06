@@ -1,0 +1,17 @@
+@import "../../../theme/modules/variables";
+
+.statusContainer {
+  margin: 0 auto;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 1rem;
+  &.error {
+    color: red;
+  }
+  &.success  {
+    color: green;
+  }
+}

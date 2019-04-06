@@ -21,7 +21,7 @@ export default (
     convertedAmount = amount / rate;
   }
 
-  if (String(convertedAmount).includes('.')) return convertedAmount.toFixed(2);
+  if (String(convertedAmount).includes('.')) return Number(convertedAmount.toFixed(2));
 
-  return convertedAmount;
+  return Number(convertedAmount.toFixed(2));
 };

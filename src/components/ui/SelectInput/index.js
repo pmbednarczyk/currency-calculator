@@ -19,12 +19,19 @@ const SelectInput = (
     [styles.inputContainer]: true,
   });
 
-  const renderOption = option => (
-    <div className={styles.optionContainer} key={option.label}>
-      {option.label}
-      {showValues && <span>{option.value}</span>}
-    </div>
-  );
+  const renderOption = (option) => {
+    const optionClassnames = classNames({
+      [styles.optionContainer]: true,
+      [styles.disabled]: option.disabled,
+    });
+
+    return (
+      <div className={optionClassnames} key={option.label}>
+        {option.label}
+        {showValues && <span>{option.value}</span>}
+      </div>
+    );
+  };
 
   return (
     <div className={selectInputClassnames}>
@@ -35,6 +42,7 @@ const SelectInput = (
         value={value}
         isDisabled={isDisabled}
         formatOptionLabel={renderOption}
+        isOptionDisabled={option => option.disabled}
       />
     </div>
   );

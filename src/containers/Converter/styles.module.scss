@@ -23,3 +23,10 @@
   box-shadow: 0 0 3rem darken($primary-color, 25%), inset 0 0 10px lighten($primary-color, 25%);
   padding: 1rem;
 }
+
+.buttonContainer {
+ margin-top: 2rem;
+  @include sm {
+    margin-top: 5rem;
+  }
+}

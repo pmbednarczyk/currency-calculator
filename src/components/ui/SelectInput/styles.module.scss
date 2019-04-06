@@ -18,5 +18,9 @@
       color: $secondary-color;
       margin-left: 1rem;
     }
+    &.disabled {
+      opacity: .7;
+      cursor: not-allowed;
+    }
   }
 }

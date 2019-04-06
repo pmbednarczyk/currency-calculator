@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import isEqual from 'lodash/isEqual';
 
 import { selectedCurrenciesShapes } from '../../shapes';
 import formatCurrencyValue from '../../../../helpers/formatCurrencyValue';
@@ -36,8 +37,8 @@ class CurrencySelector extends Component {
       currencyToSell: prevCurrencyToSell,
       currencyToBuy: prevCurrencyToBuy,
     } = prevProps.selectedCurrencies;
-    if (currencyToSell.label !== prevCurrencyToSell.label
-      || currencyToBuy.label !== prevCurrencyToBuy.label) {
+    if (!isEqual(currencyToSell, prevCurrencyToSell)
+      || !isEqual(currencyToBuy, prevCurrencyToBuy)) {
       this.setState({ currencies: this.getAvailableCurrencies() });
     }
   }
@@ -59,26 +60,53 @@ class CurrencySelector extends Component {
     this.updateCurrencyData(updatedCurrencyData);
   }
 
-  updateCurrencyData = (updatedCurrencyData) => {
+  updateCurrencyData = async (updatedCurrencyData) => {
     this.setState({
       currencyData: updatedCurrencyData,
       selectedCurrency: updatedCurrencyData.label,
     });
 
-    this.props.setCurrencyValue(this.props.currencyType, updatedCurrencyData);
+    await this.props.setCurrencyValue(this.props.currencyType, updatedCurrencyData);
+    this.checkPocketLimit();
+  }
+
+  checkPocketLimit = () => {
+    const {
+      selectedCurrencies,
+      pockets,
+      checkPocketLimit,
+      currencies,
+    } = this.props;
+    const currenciesList = pockets || currencies;
+    const currencyToSell = currenciesList
+      .find(pocket => pocket.label === selectedCurrencies.currencyToSell.label);
+    const isPocketOverLimit = selectedCurrencies.currencyToSell.amount > currencyToSell.value;
+
+    return checkPocketLimit(isPocketOverLimit);
   }
 
   getSelectedCurrencyValue = () => (
     this.props.currencies.find(currency => currency.label === this.state.selectedCurrency)
   )
 
+//   const {
+//   currencyType,
+//   currencies, selectedCurrencies: { currencyToSell, currencyToBuy },
+// } = this.props;
+// const selectedCurrency = currencies.find(curr => curr.label === this.state.selectedCurrency);
+// if (currencyType === 'currencyToBuy' && currencyToSell.label === currencyToBuy.label) {
+//   return currencies[1];
+// }
+//
+// return selectedCurrency || currencies[0];
+
   getAvailableCurrencies = () => {
     const { currencies, selectedCurrencies, currencyType } = this.props;
     const currencyTypeToFilter = currencyType === 'currencyToSell'
       ? 'currencyToBuy'
       : 'currencyToSell';
-    return currencies.filter(currency => (
-      currency.label !== selectedCurrencies[currencyTypeToFilter].label
+    return currencies.map(currency => (
+      { ...currency, disabled: currency.label === selectedCurrencies[currencyTypeToFilter].label }
     ));
   }
 

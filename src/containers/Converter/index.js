@@ -6,8 +6,10 @@ import { selectedCurrenciesShapes } from './shapes';
 
 import { loadCurrencies } from '../../redux/modules/currencies';
 import { setCurrencyValue, convertCurrencies } from '../../redux/modules/selectedCurrencies';
+import { checkPocketLimit, exchangeCurrency } from '../../redux/modules/pockets';
 import PageLayout from '../../components/layout/PageLayout';
-import availablePockets from './pocketsMockup';
+import Button from '../../components/ui/Button';
+import ActionStatus from '../../components/other/ActionStatus';
 
 import CurrencySelector from './components/CurrencySelector';
 import RatesCompare from './components/RatesCompare';
@@ -23,18 +25,21 @@ class Converter extends Component {
     const {
       selectedCurrencies,
       currencies,
+      pockets,
     } = this.props;
+    const isButtonDisabled = pockets.status.error || !selectedCurrencies.currencyToSell.amount;
     const content = (
       <div className={styles.converterContainer}>
         <div className={styles.screenContainer}>
           <CurrencySelector
             title="Your currency pockets"
-            currencies={availablePockets}
+            currencies={pockets.data}
             setCurrencyValue={this.props.setCurrencyValue}
             currencyType="currencyToSell"
             initialCurrency="USD"
             selectedCurrencies={selectedCurrencies}
             showValues
+            checkPocketLimit={this.props.checkPocketLimit}
           />
           <RatesCompare
             selectedCurrencies={selectedCurrencies}
@@ -47,7 +52,19 @@ class Converter extends Component {
             currencyType="currencyToBuy"
             initialCurrency="PLN"
             selectedCurrencies={selectedCurrencies}
+            pockets={pockets.data}
+            checkPocketLimit={this.props.checkPocketLimit}
           />
+          <div className={styles.buttonContainer}>
+            <Button
+              fullWidth
+              disabled={!!isButtonDisabled}
+              onClick={this.props.exchangeCurrency}
+            >
+              EXCHANGE IT!
+            </Button>
+          </div>
+          <ActionStatus data={pockets.status} />
         </div>
       </div>
     );
@@ -82,15 +99,19 @@ Converter.propTypes = {
 const mapStateToProps = ({
   currencies,
   selectedCurrencies,
+  pockets,
 }) => ({
   currencies,
   selectedCurrencies,
+  pockets,
 });
 
 const mapDispatchToProps = {
   loadCurrencies,
   setCurrencyValue,
   convertCurrencies,
+  checkPocketLimit,
+  exchangeCurrency,
 };
 
 export default connect(

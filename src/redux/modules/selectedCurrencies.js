@@ -4,6 +4,7 @@ const SET_CURRENCY_DATA = 'selectedCurrencies/SET_CURRENCY_DATA';
 const CONVERT_CURRENCIES = ' selectedCurrencies/CONVERT_CURRENCIES';
 const CONVERT_CURRENCIES_SUCCESS = 'selectedCurrencies/CONVERT_CURRENCIES_SUCCESS';
 const CONVERT_CURRENCIES_FAIL = 'selectedCurrencies/CONVERT_CURRENCIES_FAIL';
+const RESET_SELECTED_VALUES = 'selectedCurrencies/RESET_SELECTED_VALUES';
 
 const CURRENCY_TO_SELL = 'currencyToSell';
 
@@ -71,6 +72,12 @@ const selectedCurrencies = (state = initialState, action = {}) => {
     }
     case CONVERT_CURRENCIES:
       return { ...state, exchangeRate: { ...exchangeRate, isProcessing: true } };
+    case RESET_SELECTED_VALUES:
+      return {
+        ...state,
+        currencyToSell: { ...state.currencyToSell, amount: '' },
+        currencyToBuy: { ...state.currencyToBuy, amount: '' },
+      };
     case CONVERT_CURRENCIES_SUCCESS: {
       const { rates, base } = action.payload.data;
       const getCurrencyToBuyLabel = () => Object.keys(rates).find(el => el !== base);
@@ -112,6 +119,10 @@ export const setInputValues = (currencyType, data) => ({
   type: SET_CURRENCY_DATA,
   currencyType,
   data,
+});
+
+export const resetSelectedValues = () => ({
+  type: RESET_SELECTED_VALUES,
 });
 
 export function convertCurrencies(currencyToSell, currencyToBuy) {

@@ -2,7 +2,6 @@
 
 .btn {
   background: transparent;
-  box-shadow: $inputs-box-shadow;
   width: 100%;
   text-align: center;
   margin: 0.7rem auto;
@@ -15,13 +14,14 @@
   position: relative;
   text-decoration: none;
   color: $default-font-color;
-  border: 0.1rem solid $default-font-color;
+  border: 0.2rem solid $default-font-color;
   overflow: hidden;
   transition: $default-transition;
   backface-visibility: hidden;
   &:hover {
-    border-color: lighten($default-font-color, 25%);
-    color: lighten($default-font-color, 25%);
+    border-color: $primary-color;
+    color: $primary-color;
+    box-shadow: $inputs-box-shadow;
   }
   &.raise {
     &:hover, &:focus {
@@ -45,6 +45,10 @@
   &.fullWidth {
     display: block;
     width: 100%;
+  }
+  &.disabled {
+    opacity: .4;
+    cursor: not-allowed;
   }
 }
 

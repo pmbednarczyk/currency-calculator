@@ -10,6 +10,18 @@ import styles from './styles.module.scss';
 const DEFAULT_REFRESH_TIME = 10000;
 
 class RatesCompare extends Component {
+  componentDidMount() {
+    const {
+      selectedCurrencies: {
+        currencyToSell,
+        currencyToBuy,
+      },
+    } = this.props;
+    if (currencyToSell.label && currencyToBuy.label) {
+      this.getCurrencyRates(true);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const {
       selectedCurrencies: {
@@ -23,10 +35,9 @@ class RatesCompare extends Component {
     } = prevProps.selectedCurrencies;
     const isDifferentCurrency = (currencyToSell.label !== prevCurrencyToSell.label)
       || (currencyToBuy.label !== prevCurrencyToBuy.label);
-    const isInitialConvert = !prevCurrencyToSell.label
-      && !prevCurrencyToBuy.label
-      && currencyToSell.label
-      && currencyToBuy.label;
+    const isInitialConvert = (!prevCurrencyToSell.label
+      && !prevCurrencyToBuy.label)
+      || !this.interval;
 
     if (isDifferentCurrency) this.getCurrencyRates(isInitialConvert);
   }
