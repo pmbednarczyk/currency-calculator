@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "fe52a134581935ab2053",
+    "revision": "b66d6967bc258ff84fa1",
     "url": "/currency-calculator/static/css/main.8b654bc8.chunk.css"
   },
   {
-    "revision": "fe52a134581935ab2053",
-    "url": "/currency-calculator/static/js/main.fe52a134.chunk.js"
+    "revision": "b66d6967bc258ff84fa1",
+    "url": "/currency-calculator/static/js/main.b66d6967.chunk.js"
   },
   {
     "revision": "e63e215a52261b4f6d71",
@@ -52,6 +52,10 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans.3656273b.eot"
   },
   {
+    "revision": "357195297e232ff030742f55578e6e83",
+    "url": "/currency-calculator/static/media/IBMPlexSans.35719529.ttf"
+  },
+  {
     "revision": "571ca45a4602ff7a29aafe99b7cc66f7",
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.571ca45a.eot"
   },
@@ -60,20 +64,16 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.d2eb3aaf.ttf"
   },
   {
+    "revision": "4a61efddbcca80b7251425fbe481e0a8",
+    "url": "/currency-calculator/static/media/IBMPlexSans-Bold.4a61efdd.ttf"
+  },
+  {
     "revision": "45c04a02319da49199c32c2dce0caf68",
     "url": "/currency-calculator/static/media/IBMPlexSans-Bold.45c04a02.eot"
   },
   {
-    "revision": "357195297e232ff030742f55578e6e83",
-    "url": "/currency-calculator/static/media/IBMPlexSans.35719529.ttf"
-  },
-  {
     "revision": "8968275054834b92a1ed64d57f237fd7",
     "url": "/currency-calculator/static/media/IBMPlexSans-ExtraLight.89682750.eot"
-  },
-  {
-    "revision": "4a61efddbcca80b7251425fbe481e0a8",
-    "url": "/currency-calculator/static/media/IBMPlexSans-Bold.4a61efdd.ttf"
   },
   {
     "revision": "7ae4d8ec84a17d8ad1784fa1f859a64e",
@@ -96,7 +96,7 @@ self.__precacheManifest = [
     "url": "/currency-calculator/static/media/IBMPlexSans-Light.f7fe0837.svg"
   },
   {
-    "revision": "afcf423cdec818f98bea9bfe6df09046",
+    "revision": "009dc77b3ce7a0be769603618b318063",
     "url": "/currency-calculator/index.html"
   }
 ];
