@@ -26,7 +26,7 @@ const ActionStatus = ({ data }) => {
 ActionStatus.defaultProps = {
   data: {
     error: '',
-    success: '',
+    successMessage: '',
   },
 };
 

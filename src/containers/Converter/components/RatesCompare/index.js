@@ -73,7 +73,7 @@ class RatesCompare extends Component {
       isProcessed,
     } = data;
     if (!isProcessing && !isProcessed) return null;
-    if (isProcessing) return <LoaderAnimation isLoading />;
+    if (isProcessing  && !isProcessed) return <LoaderAnimation isLoading />;
 
     return (
       <span>

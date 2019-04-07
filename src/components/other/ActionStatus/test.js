@@ -1,15 +1,30 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoaderAnimation from '.';
+import ActionStatus from '.';
 
-it('renders without crashing (is loading)', () => {
-  shallow(<LoaderAnimation isLoading />);
+const successMsg = {
+  error: '',
+  successMessage: 'Success!',
+};
+
+const errorMsg = {
+  error: 'Error! ;(',
+  successMessage: '',
+};
+
+const noneMsg = {
+  error: '',
+  successMessage: '',
+};
+
+it('renders without crashing (successMsg)', () => {
+  shallow(<ActionStatus data={successMsg} />);
 });
 
-it('renders without crashing (not loading)', () => {
-  shallow(<LoaderAnimation isLoading={false} />);
+it('renders without crashing (errorMsg)', () => {
+  shallow(<ActionStatus data={errorMsg} />);
 });
 
-it('renders without crashing (no props passed)', () => {
-  shallow(<LoaderAnimation />);
+it('renders without crashing (noneMsg)', () => {
+  shallow(<ActionStatus data={noneMsg} />);
 });

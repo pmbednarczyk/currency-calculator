@@ -16,7 +16,7 @@ const PageLayout = ({ content, isLoading }) => {
     <div className={pageLayoutClassnames}>
       {isLoading ? <LoaderAnimation isLoading={isLoading} /> : content }
     </div>
-  )
+  );
 };
 
 PageLayout.propTypes = {

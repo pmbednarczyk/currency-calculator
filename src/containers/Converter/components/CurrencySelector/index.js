@@ -77,7 +77,7 @@ class CurrencySelector extends Component {
       checkPocketLimit,
       currencies,
     } = this.props;
-    const currenciesList = pockets || currencies;
+    const currenciesList = (pockets.length && pockets) || currencies;
     const currencyToSell = currenciesList
       .find(pocket => pocket.label === selectedCurrencies.currencyToSell.label);
     const isPocketOverLimit = selectedCurrencies.currencyToSell.amount > currencyToSell.value;
@@ -147,11 +147,14 @@ CurrencySelector.propTypes = {
   currencyType: PropTypes.string.isRequired,
   title: PropTypes.string,
   showValues: PropTypes.bool,
+  pockets: PropTypes.arrayOf(PropTypes.object),
+  checkPocketLimit: PropTypes.func.isRequired,
 };
 
 CurrencySelector.defaultProps = {
   title: '',
   showValues: false,
+  pockets: [],
 };
 
 export default CurrencySelector;

@@ -17,7 +17,15 @@ const options = [{
 }, {
   label: 'THB',
   value: 269200,
+  disabled: true,
 }];
+
+const renderCustomOption = option => (
+  <div key={option.label}>
+    {option.label}
+  </div>
+);
+
 
 it('renders without crashing (none of props passed)', () => {
   shallow(<SelectInput />);
@@ -31,6 +39,21 @@ it('renders without crashing (all props passed)', () => {
       placeholder="Currency"
       isDisabled={false}
       value={options[0]}
+      isOptionDisabled={option => option.disabled}
+    />,
+  );
+});
+
+it('renders without crashing (custom option render passed)', () => {
+  shallow(
+    <SelectInput
+      options={options}
+      onChange={() => {}}
+      placeholder="Currency"
+      isDisabled={false}
+      value={options[0]}
+      isOptionDisabled={option => option.disabled}
+      formatOptionLabel={renderCustomOption}
     />,
   );
 });

@@ -86,6 +86,7 @@ Converter.propTypes = {
   setCurrencyValue: PropTypes.func.isRequired,
   convertCurrencies: PropTypes.func.isRequired,
   loadCurrencies: PropTypes.func.isRequired,
+  checkPocketLimit: PropTypes.func.isRequired,
   selectedCurrencies: PropTypes.shape({
     ...selectedCurrenciesShapes,
   }).isRequired,
@@ -93,6 +94,10 @@ Converter.propTypes = {
     data: PropTypes.array,
     isProcessing: PropTypes.bool,
     isProcessed: PropTypes.bool,
+  }).isRequired,
+  pockets: PropTypes.shape({
+    status: PropTypes.object,
+    data: PropTypes.array,
   }).isRequired,
 };
 

@@ -29,6 +29,7 @@ const currencies = [{
 
 const defaultRequiredProps = {
   setCurrencyValue: () => {},
+  checkPocketLimit: () => {},
   selectedCurrencies,
   currencies,
 };
@@ -44,6 +45,7 @@ it('renders without crashing (currencyToSell type)', () => {
 it('renders without crashing (currencyToBuy type)', () => {
   shallow(<CurrencySelector
     initialCurrency="PLN"
+    pockets={currencies}
     currencyType="currencyToBuy"
     {...defaultRequiredProps}
   />);
